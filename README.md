@@ -10,11 +10,27 @@ When you correct Claude ("No, always use `const` not `let`" or "Never commit dir
 
 ## Installation
 
+### Direct install (recommended)
+
 ```bash
 /plugin add jainabhishek/reflect-skill
 ```
 
-Or clone and install locally:
+### Via marketplace
+
+Subscribe to the marketplace first (one-time):
+
+```bash
+/plugin marketplace add jainabhishek/reflect-skill
+```
+
+Then install the plugin:
+
+```bash
+/plugin install reflect@jainabhishek-plugins
+```
+
+### Local install
 
 ```bash
 git clone https://github.com/jainabhishek/reflect-skill.git

@@ -1,0 +1,32 @@
+{
+  "name": "jainabhishek-plugins",
+  "owner": {
+    "name": "Abhishek Jain",
+    "email": "jainabhishek@github.com"
+  },
+  "metadata": {
+    "description": "Claude Code plugins for productivity and self-improvement",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "reflect",
+      "source": ".",
+      "description": "Self-improving skill that learns from your corrections and remembers them across sessions",
+      "version": "1.0.0",
+      "author": {
+        "name": "Abhishek Jain"
+      },
+      "license": "MIT",
+      "keywords": [
+        "learning",
+        "self-improvement",
+        "memory",
+        "preferences",
+        "corrections",
+        "productivity"
+      ],
+      "category": "productivity"
+    }
+  ]
+}
