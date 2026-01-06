@@ -65,12 +65,73 @@ Add to your `.claude/settings.json`:
 }
 ```
 
-## How It Works
+## How Continuous Learning Works
 
-1. **Detects signals** - Explicit corrections (HIGH), success patterns (MEDIUM), implied preferences (LOW)
-2. **Presents for review** - Shows detected learnings with proposed skill file changes
-3. **Persists learnings** - Updates skill files after your approval
-4. **Git integration** - Optionally commits changes for version history
+Claude doesn't have persistent memory between sessions. Instead, Reflect uses **external memory** through skill files:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                    THE LEARNING LOOP                        │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   Session 1                                                 │
+│   ─────────                                                 │
+│   You: "Review auth code"                                   │
+│   Claude: [misses SQL injection]                            │
+│   You: "Always check for SQL injection!"  ◄── CORRECTION   │
+│   You: "/reflect"                                           │
+│        │                                                    │
+│        ▼                                                    │
+│   ┌────────────────────────────┐                            │
+│   │ ~/.claude/skills/          │                            │
+│   │   security.md              │ ◄── SKILL FILE UPDATED     │
+│   │   + Check for SQL injection│                            │
+│   └────────────────────────────┘                            │
+│                                                             │
+│   Session 2 (NEW SESSION)                                   │
+│   ───────────────────────                                   │
+│   Claude loads skills at startup ◄── READS SKILL FILES     │
+│        │                                                    │
+│        ▼                                                    │
+│   You: "Review auth code"                                   │
+│   Claude: [NOW checks for SQL injection automatically]      │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### The Mechanism
+
+| Step | What Happens |
+|------|--------------|
+| 1. **Correction** | You correct Claude during a session |
+| 2. **Extract** | `/reflect` extracts the correction as text |
+| 3. **Persist** | Saves to a `.md` skill file on your filesystem |
+| 4. **Load** | Next session, Claude reads skill files at startup |
+| 5. **Apply** | Claude follows instructions in those files |
+
+### Where Learnings Live
+
+```
+~/.claude/skills/
+├── code-style.md      # "Use const, not let"
+├── security.md        # "Check for SQL injection"
+├── workflow.md        # "Never push to main directly"
+└── project-x.md       # Project-specific preferences
+```
+
+### Important Note
+
+This is **not** model fine-tuning. Reflect works by writing human-readable instructions to files that Claude reads at the start of each session—like building a growing instruction manual that Claude consults every time.
+
+## Signal Detection
+
+Reflect categorizes learnings by confidence:
+
+| Confidence | Source | Examples |
+|------------|--------|----------|
+| **HIGH** | Explicit corrections | "Never do X", "Always check Y" |
+| **MEDIUM** | Success patterns | Approaches that worked after iteration |
+| **LOW** | Implied preferences | Patterns to review later |
 
 ## Learning Categories
 
