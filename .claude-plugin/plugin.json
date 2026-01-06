@@ -1,0 +1,18 @@
+{
+  "name": "reflect",
+  "version": "1.0.0",
+  "description": "Self-improving skill that learns from your corrections and remembers them across sessions. Correct Claude once, never again.",
+  "author": "jainabhishek",
+  "repository": "https://github.com/jainabhishek/reflect-skill",
+  "license": "MIT",
+  "keywords": [
+    "learning",
+    "self-improvement",
+    "memory",
+    "preferences",
+    "corrections",
+    "claude-code",
+    "skill",
+    "productivity"
+  ]
+}
