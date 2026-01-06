@@ -46,8 +46,6 @@ enable_reflect() {
     echo ""
     echo "Claude will now analyze sessions for learnings when they end."
     echo "Learnings will be extracted and saved to skill files automatically."
-    echo ""
-    echo -e "${BLUE}Tip:${NC} Make sure the stop hook is configured in .claude/settings.json"
 }
 
 disable_reflect() {
