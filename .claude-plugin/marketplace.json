@@ -11,7 +11,7 @@
   "plugins": [
     {
       "name": "reflect",
-      "source": ".",
+      "source": "./",
       "description": "Self-improving skill that learns from your corrections and remembers them across sessions",
       "version": "1.0.0",
       "author": {
